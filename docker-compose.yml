@@ -1,0 +1,28 @@
+services:
+  flood:
+    hostname: flood
+    image: jesec/flood
+    user: ${PUID}:${PGID}
+    restart: unless-stopped
+    command: --port 3001 --allowedpath /data
+    environment:
+      HOME: /config
+    volumes:
+      - /home/${USER}/config:/config
+      - ${PATH_MEDIA}:/data
+    ports:
+      - 127.0.0.1:3001:3001
+
+  rtorrent:
+    hostname: rtorrent
+    image: jesec/rtorrent
+    user: ${PUID}:${PGID}
+    restart: unless-stopped
+    command: -o network.port_range.set=6881-6881,system.daemon.set=true
+    environment:
+      HOME: /config
+    volumes:
+      - /home/${USER}/config:/config
+      - ${PATH_MEDIA}:/data
+    ports:
+      - 0.0.0.0:6881:6881
