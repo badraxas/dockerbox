@@ -2,13 +2,15 @@ services:
   flood:
     hostname: flood
     image: jesec/flood
-    user: ${PUID}:${PGID}
     restart: unless-stopped
     ports:
       - 0.0.0.0:3001:3001
     command: --port 3001 --allowedpath /data
     environment:
-      HOME: /config
+      - HOME=/config
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=Europe/Paris
     volumes:
       - /home/${USER}/config/flood:/config
       - ${PATH_MEDIA}:/data
@@ -16,13 +18,15 @@ services:
   rtorrent:
     hostname: rtorrent
     image: jesec/rtorrent
-    user: ${PUID}:${PGID}
     restart: unless-stopped
     ports:
       - 0.0.0.0:6881:6881
     command: -o network.port_range.set=6881-6881,system.daemon.set=true
     environment:
-      HOME: /config
+      - HOME=/config
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=Europe/Paris
     volumes:
       - /home/${USER}/config/rtorrent:/config
       - ${PATH_MEDIA}:/data
