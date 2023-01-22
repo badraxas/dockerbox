@@ -12,7 +12,7 @@ services:
       - PGID=${PGID}
       - TZ=Europe/Paris
     volumes:
-      - /home/${USER}/config/flood:/config
+      - /home/${USER}/config:/config
       - ${PATH_MEDIA}:/data
 
   rtorrent:
@@ -28,7 +28,7 @@ services:
       - PGID=${PGID}
       - TZ=Europe/Paris
     volumes:
-      - /home/${USER}/config/rtorrent:/config
+      - /home/${USER}/config:/config
       - ${PATH_MEDIA}:/data
 
   jackett:
