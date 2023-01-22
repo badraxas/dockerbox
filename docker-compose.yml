@@ -4,25 +4,70 @@ services:
     image: jesec/flood
     user: ${PUID}:${PGID}
     restart: unless-stopped
+    ports:
+      - 0.0.0.0:3001:3001
     command: --port 3001 --allowedpath /data
     environment:
       HOME: /config
     volumes:
-      - /home/${USER}/config:/config
+      - /home/${USER}/config/flood:/config
       - ${PATH_MEDIA}:/data
-    ports:
-      - 127.0.0.1:3001:3001
 
   rtorrent:
     hostname: rtorrent
     image: jesec/rtorrent
     user: ${PUID}:${PGID}
     restart: unless-stopped
+    ports:
+      - 0.0.0.0:6881:6881
     command: -o network.port_range.set=6881-6881,system.daemon.set=true
     environment:
       HOME: /config
     volumes:
-      - /home/${USER}/config:/config
+      - /home/${USER}/config/rtorrent:/config
       - ${PATH_MEDIA}:/data
+
+  jackett:
+    image: linuxserver/jackett:latest
+    container_name: jackett
+    restart: unless-stopped
+    network_mode: "host"
     ports:
-      - 0.0.0.0:6881:6881
+      - 9117:9117
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=Europe/Paris
+    volumes:
+      - /home/${USER}/config/jackett:/config
+      - /etc/localtime:/etc/localtime:ro
+
+  sonarr:
+    image: linuxserver/sonarr:latest
+    container_name: sonarr
+    restart: unless-stopped
+    network_mode: "host"
+    ports:
+      - 8989:8989
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=Europe/Paris
+    volumes:
+      - /home/${USER}/config/sonarr:/config
+      - ${PATH_MEDIA}:/data
+
+  radarr:
+    image: linuxserver/radarr:latest
+    container_name: radarr
+    restart: unless-stopped
+    network_mode: "host"
+    ports:
+      - 7878:7878
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=Europe/Paris
+    volumes:
+      - /home/${USER}/config/radarr:/config
+      - ${PATH_MEDIA}:/data
