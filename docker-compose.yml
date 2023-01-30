@@ -10,7 +10,7 @@ services:
       - HOME=/config
       - PUID=${PUID}
       - PGID=${PGID}
-      - TZ=Europe/Paris
+      - TZ=${TZ}
     volumes:
       - /home/${USER}/config:/config
       - ${PATH_MEDIA}:/data
@@ -26,7 +26,7 @@ services:
       - HOME=/config
       - PUID=${PUID}
       - PGID=${PGID}
-      - TZ=Europe/Paris
+      - TZ=${TZ}
     volumes:
       - /home/${USER}/config:/config
       - ${PATH_MEDIA}:/data
@@ -41,7 +41,7 @@ services:
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
-      - TZ=Europe/Paris
+      - TZ=${TZ}
     volumes:
       - /home/${USER}/config/jackett:/config
       - /etc/localtime:/etc/localtime:ro
@@ -56,7 +56,7 @@ services:
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
-      - TZ=Europe/Paris
+      - TZ=${TZ}
     volumes:
       - /home/${USER}/config/sonarr:/config
       - ${PATH_MEDIA}:/data
@@ -71,7 +71,19 @@ services:
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
-      - TZ=Europe/Paris
+      - TZ=${TZ}
     volumes:
       - /home/${USER}/config/radarr:/config
       - ${PATH_MEDIA}:/data
+
+  flaresolverr:
+    image: flaresolverr/flaresolverr:latest
+    container_name: flaresolverr
+    ports:
+      - "${PORT:-8191}:8191"
+    environment:
+      - LOG_LEVEL=${LOG_LEVEL:-info}
+      - LOG_HTML=${LOG_HTML:-false}
+      - CAPTCHA_SOLVER=${CAPTCHA_SOLVER:-none}
+      - TZ=${TZ}
+    restart: unless-stopped
