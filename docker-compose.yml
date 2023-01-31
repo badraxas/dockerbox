@@ -100,3 +100,17 @@ services:
     volumes:
       - /home/${USER}/config/overseerr:/app/config
     restart: unless-stopped
+
+  plex:
+    image: lscr.io/linuxserver/plex:latest
+    container_name: plex
+    network_mode: host
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - VERSION=docker
+      - PLEX_CLAIM=${PLEX_CLAIM}
+    volumes:
+      - /home/${USER}/config/plex:/config
+      - ${PATH_MEDIA}:/data
+    restart: unless-stopped
