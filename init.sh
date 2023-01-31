@@ -20,4 +20,4 @@ adduser media docker
 mkdir -p /data/torrents /data/movies /data/music /data/shows
 
 # Set premissions
-chown media: /data/torrents /data/movies /data/music /data/shows
+chown media: /data /data/torrents /data/movies /data/music /data/shows
