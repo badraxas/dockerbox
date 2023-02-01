@@ -114,3 +114,13 @@ services:
       - /home/${USER}/config/plex:/config
       - ${PATH_MEDIA}:/data
     restart: unless-stopped
+
+  web:
+    image: nginx
+    volumes:
+    - ./templates:/etc/nginx/templates
+    ports:
+    - "80:80"
+    - "443:443"
+    environment:
+    - HOSTNAME=${HOSTNAME}
