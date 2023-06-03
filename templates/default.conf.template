@@ -15,22 +15,22 @@ server {
 
     location ^~ /flood {
         proxy_pass            http://127.0.0.1:3001;
-        #include               proxy_params;
+        include               proxy_params;
     }
 
     location ^~ /jackett {
         proxy_pass            http://127.0.0.1:9117;
-        #include               proxy_params;
+        include               proxy_params;
     }
 
     location ^~ /sonarr {
         proxy_pass            http://127.0.0.1:8989/sonarr;
-        #include               proxy_params;
+        include               proxy_params;
     }
 
     location ^~ /radarr {
         proxy_pass            http://127.0.0.1:7878/radarr;
-        #include               proxy_params;
+        include               proxy_params;
     }
 
     location /web {
@@ -49,7 +49,7 @@ server {
         client_max_body_size  100M;
 
         #Forward real ip and host to Plex
-        #include               proxy_params;
+        include               proxy_params;
 
         #Plex headers
         proxy_set_header      X-Plex-Client-Identifier $http_x_plex_client_identifier;
