@@ -116,7 +116,7 @@ services:
     restart: unless-stopped
 
   webserver:
-    image: nginx
+    image: nginx:latest
     volumes:
     - ./templates:/etc/nginx/templates
     ports:
