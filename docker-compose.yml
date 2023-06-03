@@ -115,7 +115,7 @@ services:
       - ${PATH_MEDIA}:/data
     restart: unless-stopped
 
-  web:
+  webserver:
     image: nginx
     volumes:
     - ./templates:/etc/nginx/templates
