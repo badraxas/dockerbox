@@ -1,7 +1,7 @@
 server {
     listen                    80;
     listen                    [::]:80;
-    server_name               ${HOSTNAME};
+    server_name               ${NGINX_HOSTNAME};
 
     location / {
         return 200 'gangnam style!';

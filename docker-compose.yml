@@ -123,4 +123,4 @@ services:
     - "80:80"
     - "443:443"
     environment:
-    - HOSTNAME=${HOSTNAME}
+    - NGINX_HOSTNAME=${HOSTNAME}
