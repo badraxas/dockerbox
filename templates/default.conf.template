@@ -1,3 +1,8 @@
+upstream plex_backend {
+    server                    127.0.0.1:32400;
+    keepalive                 32;
+}
+
 map $http_upgrade $connection_upgrade {
     default                   upgrade;
     ''                        close;
@@ -8,7 +13,7 @@ server {
     listen                    [::]:80;
     server_name               ${HOSTNAME};
 
-    resolver 127.0.0.11 valid=10s;
+    resolver 172.17.0.1 valid=10s;
     resolver_timeout 5s;
 
     location ^~ /flood {
@@ -32,7 +37,7 @@ server {
     }
 
     location /web {
-        proxy_pass            http://plex:32400;
+        proxy_pass            http://plex_backend;
 
         #Plex has A LOT of javascript, xml and html. This helps a lot, but if it causes playback issues with devices turn it off. (Haven't encountered any yet)
         gzip                  on;
@@ -78,7 +83,7 @@ server {
     }
 
     location /plex {
-        proxy_pass            http://plex:32400;
+        proxy_pass            http://plex_backend;
     }
 
     location / {
