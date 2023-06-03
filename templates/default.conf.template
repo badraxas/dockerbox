@@ -55,6 +55,17 @@ server {
 server {
     listen                    80;
     listen                    [::]:80;
+    server_name               overseerr.${NGINX_HOSTNAME};
+
+    location / {
+        proxy_pass            http://overseerr:5055;
+        include               proxy_params;
+    }
+}
+
+server {
+    listen                    80;
+    listen                    [::]:80;
     server_name               plex.${NGINX_HOSTNAME};
 
     location /web {
