@@ -11,7 +11,7 @@ map $http_upgrade $connection_upgrade {
 server {
     listen                    80;
     listen                    [::]:80;
-    server_name               flood.${HOSTNAME};
+    server_name               flood.${NGINX_HOSTNAME};
 
     location / {
         proxy_pass            http://flood:3001;
@@ -22,7 +22,7 @@ server {
 server {
     listen                    80;
     listen                    [::]:80;
-    server_name               jackett.${HOSTNAME};
+    server_name               jackett.${NGINX_HOSTNAME};
 
     location / {
         proxy_pass            http://jackett:9117;
@@ -33,7 +33,7 @@ server {
 server {
     listen                    80;
     listen                    [::]:80;
-    server_name               sonarr.${HOSTNAME};
+    server_name               sonarr.${NGINX_HOSTNAME};
 
     location / {
         proxy_pass            http://sonarr:8989;
@@ -44,7 +44,7 @@ server {
 server {
     listen                    80;
     listen                    [::]:80;
-    server_name               radarr.${HOSTNAME};
+    server_name               radarr.${NGINX_HOSTNAME};
 
     location / {
         proxy_pass            http://radarr:7878;
@@ -55,7 +55,7 @@ server {
 server {
     listen                    80;
     listen                    [::]:80;
-    server_name               plex.${HOSTNAME};
+    server_name               plex.${NGINX_HOSTNAME};
 
     location /web {
         proxy_pass            http://plex_backend;
