@@ -1,5 +1,5 @@
 upstream plex_backend {
-    server                    localhost:32400;
+    server                    plex:32400;
     keepalive                 32;
 }
 
@@ -14,22 +14,22 @@ server {
     server_name               ${HOSTNAME};
 
     location ^~ /flood {
-        proxy_pass            http://127.0.0.1:3001;
+        proxy_pass            http://flood:3001;
         include               proxy_params;
     }
 
     location ^~ /jackett {
-        proxy_pass            http://127.0.0.1:9117;
+        proxy_pass            http://jackett:9117;
         include               proxy_params;
     }
 
     location ^~ /sonarr {
-        proxy_pass            http://127.0.0.1:8989/sonarr;
+        proxy_pass            http://sonarr:8989;
         include               proxy_params;
     }
 
     location ^~ /radarr {
-        proxy_pass            http://127.0.0.1:7878/radarr;
+        proxy_pass            http://radarr:7878;
         include               proxy_params;
     }
 

@@ -116,11 +116,10 @@ services:
     restart: unless-stopped
 
   webserver:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: nginx:latest
     volumes:
     - ./templates:/etc/nginx/templates
+    - ./nginx/proxy_params:/etc/nginx/proxy_params
     ports:
     - "80:80"
     - "443:443"
