@@ -20,8 +20,8 @@ services:
     image: jesec/rtorrent
     restart: unless-stopped
     ports:
-      - 0.0.0.0:6881:6881
-    command: -o network.port_range.set=6881-6881,system.daemon.set=true
+      - 0.0.0.0:4501:4501
+    command: -o network.port_range.set=4501-4501,system.daemon.set=true
     environment:
       - HOME=/config
       - PUID=${PUID}
