@@ -114,6 +114,9 @@ services:
   webserver:
     image: 'jc21/nginx-proxy-manager:latest'
     restart: unless-stopped
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
     ports:
       - '80:80'
       - '81:81'
