@@ -112,15 +112,15 @@ services:
     restart: unless-stopped
 
   webserver:
-    image: nginx:latest
-    volumes:
-    - ./templates:/etc/nginx/templates
-    - ./nginx/proxy_params:/etc/nginx/proxy_params
+    image: 'jc21/nginx-proxy-manager:latest'
+    restart: unless-stopped
     ports:
-    - "80:80"
-    - "443:443"
-    environment:
-    - NGINX_HOSTNAME=${HOSTNAME}
+      - '80:80'
+      - '81:81'
+      - '443:443'
+    volumes:
+      - ./data:/data
+      - ./letsencrypt:/etc/letsencrypt
     depends_on:
       - flood
       - plex
