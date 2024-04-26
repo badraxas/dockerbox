@@ -97,6 +97,14 @@ services:
       - ${PATH_MEDIA}:/data
     restart: unless-stopped
 
+  filebrowser:
+    image: filebrowser/filebrowser
+    volumes:
+      - ${PATH_MEDIA}:/srv
+      - ./filebrowser/filebrowser.db:/database.db
+      - ./filebrowser/.filebrowser.json:/.filebrowser.json
+    user: "${UID}:${GID}"
+
   webserver:
     image: 'jc21/nginx-proxy-manager:latest'
     restart: unless-stopped
