@@ -1,0 +1,15 @@
+{
+    "name": "Badraflix",
+    "short_name": "Badraflix",
+    "icons": [
+        {
+            "src": "/android-chrome-48x48.png",
+            "sizes": "48x48",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#ffffff",
+    "background_color": "#ffffff",
+    "start_url": "https://browse.badraflix.xyz",
+    "display": "standalone"
+}

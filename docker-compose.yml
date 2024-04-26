@@ -101,6 +101,7 @@ services:
     image: filebrowser/filebrowser
     volumes:
       - ${PATH_MEDIA}:/srv
+      - ./filebrowser/branding:/branding
       - ./filebrowser/filebrowser.db:/database.db
       - ./filebrowser/config.json:/.filebrowser.json
     user: "${PUID}:${PGID}"
