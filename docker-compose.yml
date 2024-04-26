@@ -102,7 +102,7 @@ services:
     volumes:
       - ${PATH_MEDIA}:/srv
       - ./filebrowser/filebrowser.db:/database.db
-      - ./filebrowser/.filebrowser.json:/.filebrowser.json
+      - ./filebrowser/config.json:/.filebrowser.json
     user: "${PUID}:${PGID}"
 
   webserver:
