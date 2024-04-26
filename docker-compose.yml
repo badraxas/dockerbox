@@ -103,7 +103,7 @@ services:
       - ${PATH_MEDIA}:/srv
       - ./filebrowser/filebrowser.db:/database.db
       - ./filebrowser/.filebrowser.json:/.filebrowser.json
-    user: "${UID}:${GID}"
+    user: "${PUID}:${PGID}"
 
   webserver:
     image: 'jc21/nginx-proxy-manager:latest'
